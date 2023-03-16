@@ -10,51 +10,50 @@ package model;
  */
 public class Attendance {
 
-    private Student sid;
-    private Lesson lid;
-    private String status;
-    private String record;
-    private String note;
+    private int id;
+    private Student student;
+    private Lesson lesson;
+    private boolean status;
+    private String description;
 
-    public String getNote() {
-        return note;
+    public int getId() {
+        return id;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Student getSid() {
-        return sid;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setSid(Student sid) {
-        this.sid = sid;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public Lesson getLid() {
-        return lid;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLid(Lesson lid) {
-        this.lid = lid;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public String getRecord() {
-        return record;
+    public String getDescription() {
+        return description;
     }
 
-    public void setRecord(String record) {
-        this.record = record;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
 
 }

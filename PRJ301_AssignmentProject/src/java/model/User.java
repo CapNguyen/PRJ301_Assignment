@@ -9,11 +9,10 @@ package model;
  * @author admin
  */
 public class User {
-        private int uid;
-        private String username;
-        private String password;
-        private String rollnumber;
-        private String campus;
+
+    private int uid;
+    private String username;
+    private String password;
 
     public int getUid() {
         return uid;
@@ -37,22 +36,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRollnumber() {
-        return rollnumber;
-    }
-
-    public void setRollnumber(String rollnumber) {
-        this.rollnumber = rollnumber;
-    }
-
-    public String getCampus() {
-        return campus;
-    }
-
-    public void setCampus(String campus) {
-        this.campus = campus;
     }
 
 }

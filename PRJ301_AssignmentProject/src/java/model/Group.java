@@ -8,36 +8,54 @@ import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author sonnt
  */
 public class Group {
+    private int id;
+    private String name;
+    private Course course;
+    private ArrayList<Lesson> lessons = new ArrayList<>();
 
-    private int gid;
-    private Course cid;
-    private String groupname;
-    private ArrayList<Student> students = new ArrayList<>();
-    public int getGid() {
-        return gid;
+    public ArrayList<Lesson> getlessons() {
+        return lessons;
     }
 
-    public void setGid(int gid) {
-        this.gid = gid;
+    public void setlessons(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
     }
 
-    public Course getCid() {
-        return cid;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCid(Course cid) {
-        this.cid = cid;
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+    
+    ArrayList<Student> students = new ArrayList<>();
+
+    public int getId() {
+        return id;
     }
 
-    public String getGroupname() {
-        return groupname;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setGroupname(String groupname) {
-        this.groupname = groupname;
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+    
 }

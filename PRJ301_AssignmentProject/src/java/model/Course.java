@@ -4,47 +4,40 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
- * @author admin
+ * @author sonnt
  */
 public class Course {
+    private int id;
+    private String name;
+    private ArrayList<Group> groups = new ArrayList<>();
 
-    private int cid;
-    private String cname;
-    private int credit;
-    private String description;
-
-    public int getCid() {
-        return cid;
+    public int getId() {
+        return id;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCname() {
-        return cname;
+    public String getName() {
+        return name;
     }
 
-    public void setCname(String cname) {
-        this.cname = cname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCredit() {
-        return credit;
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    
 }
+ 

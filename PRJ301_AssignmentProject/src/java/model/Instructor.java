@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,76 +12,31 @@ import java.util.Date;
  */
 public class Instructor {
 
-    private int iid;
-    private String firstname;
-    private String lastname;
-    private boolean gender;
-    private Date idob;
-    private String rollnumber;
-    private String note;
-    private String email;
+    private int id;
+    private String name;
+    private ArrayList<Lesson> lessons = new ArrayList<>();
 
-    public int getIid() {
-        return iid;
+    public int getId() {
+        return id;
     }
 
-    public void setIid(int iid) {
-        this.iid = iid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public ArrayList<Lesson> getLessons() {
+        return lessons;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
-    public Date getIdob() {
-        return idob;
-    }
-
-    public void setIdob(Date idob) {
-        this.idob = idob;
-    }
-
-    public String getRollnumber() {
-        return rollnumber;
-    }
-
-    public void setRollnumber(String rollnumber) {
-        this.rollnumber = rollnumber;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLessons(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
     }
 }

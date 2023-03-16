@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -12,18 +12,35 @@ import java.util.Date;
  */
 public class Lesson {
 
-    private int lid;
+    private int id;
+    private Room room;
+    private Instructor instructor;
     private Date date;
-    private Instructor ins;
-    private TimeSlot ts;
-    private Group gid;
+    private TimeSlot slot;
+    private Group group;
 
-    public int getLid() {
-        return lid;
+    public int getId() {
+        return id;
     }
 
-    public void setLid(int lid) {
-        this.lid = lid;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     public Date getDate() {
@@ -34,28 +51,21 @@ public class Lesson {
         this.date = date;
     }
 
-    public Instructor getIns() {
-        return ins;
+    public TimeSlot getSlot() {
+        return slot;
     }
 
-    public void setIns(Instructor ins) {
-        this.ins = ins;
+    public void setSlot(TimeSlot slot) {
+        this.slot = slot;
     }
 
-    public TimeSlot getTs() {
-        return ts;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setTs(TimeSlot ts) {
-        this.ts = ts;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
-    public Group getGid() {
-        return gid;
-    }
-
-    public void setGid(Group gid) {
-        this.gid = gid;
-    }
 
 }

@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
    <head>
@@ -17,11 +18,11 @@
                 <form action="login" method="post" class="form">
 
                     <div class="form__field">
-                        <input type="email" placeholder="username" name="username">
+                        <input type="email" placeholder="username">
                     </div>
 
                     <div class="form__field">
-                        <input type="password" placeholder="•••••••••" name="password">
+                        <input type="password" placeholder="•••••••••">
                     </div>
 
                     <div class="form__field">

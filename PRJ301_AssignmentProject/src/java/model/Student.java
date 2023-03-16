@@ -4,85 +4,47 @@
  */
 package model;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author admin
  */
 public class Student {
+    private int id;
+    private String name;
+    private User user;
+    ArrayList<Group> groups = new ArrayList<>();
 
-    private int sid;
-    private String firstname;
-    private String lastname;
-    private boolean gender;
-    private Date sdob;
-    private String rollnumber;
-    private String note;
-    private String email;
-
-    public String getEmail() {
-        return email;
+    public int getId() {
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getSid() {
-        return sid;
+    public String getName() {
+        return name;
     }
 
-    public void setSid(int sid) {
-        this.sid = sid;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public User getUid() {
+        return user;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setUid(User user) {
+        this.user = user;
     }
 
-    public String getLastname() {
-        return lastname;
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
     }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
-
-    public Date getSdob() {
-        return sdob;
-    }
-
-    public void setSdob(Date sdob) {
-        this.sdob = sdob;
-    }
-
-    public String getRollnumber() {
-        return rollnumber;
-    }
-
-    public void setRollnumber(String rollnumber) {
-        this.rollnumber = rollnumber;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
 }

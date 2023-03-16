@@ -4,28 +4,39 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author admin
  */
 public class Room {
-    private int rid;
-    private String roomname;
 
-    public int getRid() {
-        return rid;
+    private int id;
+    private String name;
+    private ArrayList<Lesson> lessons = new ArrayList<>();
+
+    public int getId() {
+        return id;
     }
 
-    public void setRid(int rid) {
-        this.rid = rid;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getRoomname() {
-        return roomname;
+    public String getName() {
+        return name;
     }
 
-    public void setRoomname(String roomname) {
-        this.roomname = roomname;
+    public void setName(String name) {
+        this.name = name;
     }
-    
+
+    public ArrayList<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(ArrayList<Lesson> lessons) {
+        this.lessons = lessons;
+    }
 }
