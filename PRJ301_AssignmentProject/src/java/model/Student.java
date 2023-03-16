@@ -14,7 +14,24 @@ public class Student {
     private int id;
     private String name;
     private User user;
+    private boolean gender;
     ArrayList<Group> groups = new ArrayList<>();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
 
     public int getId() {
         return id;

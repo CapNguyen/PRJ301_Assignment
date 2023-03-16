@@ -13,6 +13,15 @@ public class User {
     private int uid;
     private String username;
     private String password;
+    private boolean role;
+
+    public boolean isRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
+    }
 
     public int getUid() {
         return uid;

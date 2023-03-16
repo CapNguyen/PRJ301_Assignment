@@ -14,7 +14,26 @@ public class Instructor {
 
     private int id;
     private String name;
+    private User user;
+    private boolean gender;
+
     private ArrayList<Lesson> lessons = new ArrayList<>();
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
 
     public int getId() {
         return id;
