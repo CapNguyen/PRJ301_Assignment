@@ -32,7 +32,7 @@
             </div>
         </div>
         <script>
-            window.onload = function(alert("Your account doesn't match any account in database. Please login again !"));
+            alert("Your account doesn't match any account in database. Please login again !"));
         </script>
     </body>
 </html>
