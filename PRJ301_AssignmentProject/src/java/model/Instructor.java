@@ -16,7 +16,6 @@ public class Instructor {
     private String name;
     private User user;
     private boolean gender;
-
     private ArrayList<Lesson> lessons = new ArrayList<>();
 
     public User getUser() {
