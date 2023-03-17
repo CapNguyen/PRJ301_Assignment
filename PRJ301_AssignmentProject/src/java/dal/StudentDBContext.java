@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.User;
 import model.Attendance;
 import model.Course;
 import model.Group;
@@ -19,61 +20,12 @@ import model.Room;
 import model.Session;
 import model.Student;
 import model.TimeSlot;
-import model.User;
 
 /**
  *
- * @author admin
+ * @author sonnt
  */
 public class StudentDBContext extends DBContext<Student> {
-
-    @Override
-    public void insert(Student model) {
-    }
-
-    @Override
-    public void update(Student model) {
-    }
-
-    @Override
-    public void delete(Student model) {
-    }
-
-    @Override
-    public Student get(int id) {
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        try {
-            String sql = "SELECT  [sid]\n"
-                    + "      ,[sname]\n"
-                    + "      ,[uid]\n"
-                    + "      ,[gender]\n"
-                    + "  FROM [Student] s\n"
-                    + "  Where s.sid=1";
-            stm = connection.prepareStatement(sql);
-            stm.setInt(1, id);
-            rs = stm.executeQuery();
-            if (rs.next()) {
-                Student s = new Student();
-                s.setId(rs.getInt("sid"));
-                s.setName(rs.getString("sname"));
-                s.setGender(rs.getBoolean("gender"));
-                return s;
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                rs.close();
-                stm.close();
-                connection.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return null;
-    }
 
     @Override
     public ArrayList<Student> all() {
@@ -97,6 +49,53 @@ public class StudentDBContext extends DBContext<Student> {
                 students.add(s);
             }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                stm.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return students;
+    }
+
+    public ArrayList<Student> search(int sclass) {
+        ArrayList<Student> students = new ArrayList<>();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "SELECT s.[sid], s.scode, s.sname, s.Gender, s.userID\n"
+                    + "FROM Student s INNER JOIN Student_Group sg\n"
+                    + "ON s.[sid] = sg.[sid]\n"
+                    + "WHERE sg.gid = ?\n";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, sclass);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                Student s = new Student();
+                s.setId(rs.getInt("sid"));
+                s.setCode(rs.getString("scode"));
+                s.setName(rs.getString("sname"));
+                s.setGender(rs.getBoolean("Gender"));
+                User a = new User();
+                a.setId(rs.getInt("userID"));
+                s.setUser(a);
+                students.add(s);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -252,5 +251,25 @@ public class StudentDBContext extends DBContext<Student> {
             }
         }
         return student;
+    }
+
+    @Override
+    public void update(Student model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Student get(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void insert(Student model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete(Student model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
