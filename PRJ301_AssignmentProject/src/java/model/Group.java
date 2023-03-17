@@ -8,31 +8,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author sonnt
+ * @author ADMIN
  */
 public class Group {
+
     private int id;
     private String name;
-    private Course course;
-    private ArrayList<Lesson> lessons = new ArrayList<>();
-
-    public ArrayList<Lesson> getlessons() {
-        return lessons;
-    }
-
-    public void setlessons(ArrayList<Lesson> lessons) {
-        this.lessons = lessons;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-    
-    ArrayList<Student> students = new ArrayList<>();
+    private ArrayList<Course> courses = new ArrayList<>();
+    private ArrayList<Session> sessions = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -50,12 +33,20 @@ public class Group {
         this.name = name;
     }
 
-    public ArrayList<Student> getStudents() {
-        return students;
+    public ArrayList<Session> getSessions() {
+        return sessions;
     }
 
-    public void setStudents(ArrayList<Student> students) {
-        this.students = students;
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
-    
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(ArrayList<Course> courses) {
+        this.courses = courses;
+    }
+
 }

@@ -4,31 +4,26 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author admin
  */
 public class User {
 
-    private int uid;
+    private int id;
     private String username;
     private String password;
     private boolean role;
+    ArrayList<Student> students = new ArrayList<>();
 
-    public boolean isRole() {
-        return role;
+    public int getId() {
+        return id;
     }
 
-    public void setRole(boolean role) {
-        this.role = role;
-    }
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -45,6 +40,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isRole() {
+        return role;
+    }
+
+    public void setRole(boolean role) {
+        this.role = role;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
     }
 
 }

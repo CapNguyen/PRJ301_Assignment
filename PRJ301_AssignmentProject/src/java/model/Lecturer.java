@@ -8,30 +8,22 @@ import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
-public class Instructor {
+public class Lecturer {
 
     private int id;
     private String name;
+    private String code;
     private User user;
-    private boolean gender;
-    private ArrayList<Lesson> lessons = new ArrayList<>();
+    private ArrayList<Session> sessions = new ArrayList<>();
 
-    public User getUser() {
-        return user;
+    public String getCode() {
+        return code;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public int getId() {
@@ -50,11 +42,23 @@ public class Instructor {
         this.name = name;
     }
 
-    public ArrayList<Lesson> getLessons() {
-        return lessons;
+
+
+    public ArrayList<Session> getSessions() {
+        return sessions;
     }
 
-    public void setLessons(ArrayList<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }

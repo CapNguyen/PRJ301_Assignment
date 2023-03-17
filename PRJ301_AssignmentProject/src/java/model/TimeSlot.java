@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
 public class TimeSlot {
 
     private int id;
     private String description;
-    private ArrayList<Lesson> lessons = new ArrayList<>();
+    private ArrayList<Session> sessions = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -32,11 +32,14 @@ public class TimeSlot {
         this.description = description;
     }
 
-    public ArrayList<Lesson> getLessons() {
-        return lessons;
+    public ArrayList<Session> getSessions() {
+        return sessions;
     }
 
-    public void setLessons(ArrayList<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
     }
+
+   
+
 }

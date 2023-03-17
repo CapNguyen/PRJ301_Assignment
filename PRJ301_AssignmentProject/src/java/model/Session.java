@@ -5,19 +5,23 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
-public class Lesson {
+public class Session {
 
     private int id;
     private Room room;
-    private Instructor instructor;
+    private Lecturer lecturer;
     private Date date;
     private TimeSlot slot;
     private Group group;
+    private Course course;
+    private Attendance attendance;
+    private boolean status;
 
     public int getId() {
         return id;
@@ -35,12 +39,12 @@ public class Lesson {
         this.room = room;
     }
 
-    public Instructor getInstructor() {
-        return instructor;
+    public Lecturer getLecturer() {
+        return lecturer;
     }
 
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
     }
 
     public Date getDate() {
@@ -67,5 +71,28 @@ public class Lesson {
         this.group = group;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Attendance attendance) {
+        this.attendance = attendance;
+    }
 
 }

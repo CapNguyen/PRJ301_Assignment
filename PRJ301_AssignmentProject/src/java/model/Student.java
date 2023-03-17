@@ -4,34 +4,22 @@
  */
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
 public class Student {
+
     private int id;
+    private String code;
     private String name;
-    private User user;
     private boolean gender;
+    private User user;
+    private Attendance attendance;
     ArrayList<Group> groups = new ArrayList<>();
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
-    }
 
     public int getId() {
         return id;
@@ -39,6 +27,14 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -49,12 +45,12 @@ public class Student {
         this.name = name;
     }
 
-    public User getUid() {
-        return user;
+    public boolean isGender() {
+        return gender;
     }
 
-    public void setUid(User user) {
-        this.user = user;
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     public ArrayList<Group> getGroups() {
@@ -64,4 +60,21 @@ public class Student {
     public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Attendance attendance) {
+        this.attendance = attendance;
+    }
+
 }

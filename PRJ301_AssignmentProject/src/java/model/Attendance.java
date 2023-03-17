@@ -6,13 +6,13 @@ package model;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
 public class Attendance {
 
     private int id;
+    private Session session;
     private Student student;
-    private Lesson lesson;
     private boolean status;
     private String description;
 
@@ -24,20 +24,20 @@ public class Attendance {
         this.id = id;
     }
 
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
     public Student getStudent() {
         return student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public Lesson getLesson() {
-        return lesson;
-    }
-
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
     }
 
     public boolean isStatus() {
@@ -55,5 +55,5 @@ public class Attendance {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
 }
