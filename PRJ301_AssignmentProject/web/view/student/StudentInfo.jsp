@@ -9,9 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Student Info</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container">
+            <div class="row">
+                <div class="banner">
+                    <h1>FPT University Academic Portal</h1>
+                </div>
+                <div class="header">
+                    <a href="../timetable">Timetable</a>
+                    <h3> | </h3>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
