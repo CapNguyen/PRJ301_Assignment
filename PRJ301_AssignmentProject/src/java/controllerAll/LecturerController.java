@@ -5,15 +5,15 @@
 package controllerAll;
 
 import controller.authentication.BaseRequiredAuthenticationController;
-import dal.CourseDBContext;
-import dal.DBContext;
+import dal.LecturerDBContext;
 import dal.StudentDBContext;
+import dal.UserDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import model.Course;
+import model.Lecturer;
 import model.Student;
 import model.User;
 
@@ -21,19 +21,34 @@ import model.User;
  *
  * @author admin
  */
-public class StudentController extends BaseRequiredAuthenticationController {
-
+public class LecturerController extends BaseRequiredAuthenticationController{
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         int a = (int) request.getSession().getAttribute("id");
-        StudentDBContext studb = new StudentDBContext();
-        ArrayList<Student> stu = studb.getStdCode(a);
-        request.setAttribute("stu", stu);
+        UserDBContext udb = new UserDBContext();
+        User acc = udb.getUser(a);
+        request.setAttribute("role", a);
+        if (acc.isRole() == true) {
+            StudentDBContext studb = new StudentDBContext();
+            ArrayList<Student> stu = studb.getStdCode(a);
+            request.setAttribute("stu", stu);
+        }else{
+            LecturerDBContext lecdb = new LecturerDBContext();
+            ArrayList<Lecturer> lect = lecdb.getStdCode(a);
+            request.setAttribute("lect", lect);
+        }
 
-        DBContext<Course> cb = new CourseDBContext();
-        ArrayList<Course> courses = cb.all();
-        request.setAttribute("courses", courses);
-        request.getRequestDispatcher("../view/student/info.jsp").forward(request, response);
+        String raw_lecturer = request.getParameter("lecturer");
+        if (raw_lecturer != null) {
+            int lecturer = Integer.parseInt(raw_lecturer);
+            LecturerDBContext lb = new LecturerDBContext();
+            ArrayList<Lecturer> lec = lb.get(lecturer);
+            request.setAttribute("lec", lec);
+
+            request.getRequestDispatcher("../view/lecturer/info.jsp").forward(request, response);
+        }
     }
 
     @Override

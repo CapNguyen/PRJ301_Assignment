@@ -18,29 +18,33 @@ import model.User;
 public abstract class BaseRequiredAuthenticationController extends HttpServlet {
 
     private boolean isAuthenticated(HttpServletRequest request) {
-        User user = (User) request.getSession().getAttribute("user");
-        return user != null;
+        return request.getSession().getAttribute("acc") != null;
     }
 
-    protected abstract void doPost(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException;
+    protected abstract void doGet(HttpServletRequest request, HttpServletResponse response, User acc)
+            throws ServletException, IOException;
 
-    protected abstract void doGet(HttpServletRequest req, HttpServletResponse resp, User user) throws ServletException, IOException;
+    protected abstract void doPost(HttpServletRequest request, HttpServletResponse response, User acc)
+            throws ServletException, IOException;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (isAuthenticated(req)) {
-            doPost(req, resp, (User) req.getSession().getAttribute("user"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (isAuthenticated(request)) {
+            doGet(request, response, (User) request.getSession().getAttribute("acc"));
         } else {
-            resp.getWriter().println("access denied!");
+            response.getWriter().println("access denied!");
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (isAuthenticated(req)) {
-            doGet(req, resp, (User) req.getSession().getAttribute("user"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        if (isAuthenticated(request)) {
+            //do business
+            doPost(request, response, (User) request.getSession().getAttribute("acc"));
         } else {
-            resp.getWriter().println("access denied!");
+            response.getWriter().println("access denied!");
         }
     }
 
