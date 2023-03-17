@@ -12,10 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Group;
 
-/**
- *
- * @author admin
- */
 public class GroupDBContext extends DBContext{
     
     public ArrayList<Group> search(int course) {

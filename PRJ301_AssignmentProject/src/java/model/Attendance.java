@@ -4,10 +4,6 @@
  */
 package model;
 
-/**
- *
- * @author ADMIN
- */
 public class Attendance {
 
     private int id;

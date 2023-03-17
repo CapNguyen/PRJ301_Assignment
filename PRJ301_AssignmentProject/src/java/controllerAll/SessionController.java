@@ -22,10 +22,6 @@ import model.Session;
 import model.Student;
 import model.User;
 
-/**
- *
- * @author admin
- */
 public class SessionController extends BaseRequiredAuthenticationController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

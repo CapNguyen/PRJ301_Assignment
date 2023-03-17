@@ -11,10 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import model.User;
 
-/**
- *
- * @author admin
- */
 public abstract class BaseRequiredAuthenticationController extends HttpServlet {
 
     private boolean isAuthenticated(HttpServletRequest request) {
@@ -41,7 +37,6 @@ public abstract class BaseRequiredAuthenticationController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (isAuthenticated(request)) {
-            //do business
             doPost(request, response, (User) request.getSession().getAttribute("acc"));
         } else {
             response.getWriter().println("access denied!");

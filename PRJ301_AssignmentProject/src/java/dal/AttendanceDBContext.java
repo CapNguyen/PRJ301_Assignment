@@ -13,10 +13,6 @@ import java.util.logging.Logger;
 import model.Attendance;
 import model.Student;
 
-/**
- *
- * @author admin
- */
 public class AttendanceDBContext extends DBContext {
 
     public ArrayList<Attendance> getAttendancesBySession(int sessionid) {

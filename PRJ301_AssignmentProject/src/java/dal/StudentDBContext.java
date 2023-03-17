@@ -21,10 +21,6 @@ import model.Session;
 import model.Student;
 import model.TimeSlot;
 
-/**
- *
- * @author sonnt
- */
 public class StudentDBContext extends DBContext<Student> {
 
     @Override

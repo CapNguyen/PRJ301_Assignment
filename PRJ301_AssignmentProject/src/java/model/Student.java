@@ -4,13 +4,8 @@
  */
 package model;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
-/**
- *
- * @author ADMIN
- */
 public class Student {
 
     private int id;

@@ -17,10 +17,6 @@ import model.Lecturer;
 import model.Student;
 import model.User;
 
-/**
- *
- * @author admin
- */
 public class LecturerController extends BaseRequiredAuthenticationController{
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

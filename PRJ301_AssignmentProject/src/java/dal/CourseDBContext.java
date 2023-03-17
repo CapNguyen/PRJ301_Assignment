@@ -12,10 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Course;
 
-/**
- *
- * @author admin
- */
 public class CourseDBContext extends DBContext {
 
     @Override

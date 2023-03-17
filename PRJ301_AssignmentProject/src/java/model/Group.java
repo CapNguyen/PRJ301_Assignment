@@ -6,10 +6,6 @@ package model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author ADMIN
- */
 public class Group {
 
     private int id;

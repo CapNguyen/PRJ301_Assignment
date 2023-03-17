@@ -5,12 +5,7 @@
 package model;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
-/**
- *
- * @author ADMIN
- */
 public class Session {
 
     private int id;

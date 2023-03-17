@@ -12,10 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.TimeSlot;
 
-/**
- *
- * @author admin
- */
 public class TimeSlotDBContext extends DBContext {
 
     @Override

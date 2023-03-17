@@ -19,10 +19,6 @@ import model.Session;
 import model.TimeSlot;
 import model.User;
 
-/**
- *
- * @author admin
- */
 public class LecturerDBContext extends DBContext {
 
     @Override

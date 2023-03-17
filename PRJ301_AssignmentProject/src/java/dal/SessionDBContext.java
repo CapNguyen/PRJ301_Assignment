@@ -18,10 +18,6 @@ import model.Room;
 import model.Session;
 import model.TimeSlot;
 
-/**
- *
- * @author admin
- */
 public class SessionDBContext extends DBContext {
 
     public ArrayList<Session> search(int sessionid) {
