@@ -43,7 +43,7 @@ public class LecturerController extends BaseRequiredAuthenticationController{
             ArrayList<Lecturer> lec = lb.get(lecturer);
             request.setAttribute("lec", lec);
 
-            request.getRequestDispatcher("../view/lecturer/info.jsp").forward(request, response);
+            request.getRequestDispatcher("../view/lecturer/LecturerInfo.jsp").forward(request, response);
         }
     }
 

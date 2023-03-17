@@ -58,13 +58,8 @@ public class SessionController extends BaseRequiredAuthenticationController {
         ArrayList<Course> courses = cb.all();
         request.setAttribute("courses", courses);
 
-        request.getRequestDispatcher("../view/session/info.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/session/SesionInfo.jsp").forward(request, response);
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {

@@ -58,7 +58,7 @@ public class TimeTableController extends BaseRequiredAuthenticationController {
         model.Student student = stuDB.getTimeTable(stud1.getId(), from, to);
         request.setAttribute("s", student);
 
-        request.getRequestDispatcher("view/attendance/timetable.jsp").forward(request, response);
+        request.getRequestDispatcher("view/student/Timetable.jsp").forward(request, response);
 
     }
 

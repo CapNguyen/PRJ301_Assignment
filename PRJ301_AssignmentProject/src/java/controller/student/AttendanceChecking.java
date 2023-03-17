@@ -37,7 +37,7 @@ public class AttendanceChecking extends BaseRequiredAuthenticationController{
             ArrayList<Session> ses1 = sdb.checkAtt(course, currentStu.getId());
             req.setAttribute("ses1", ses1);
         }
-        req.getRequestDispatcher("view/attendance/checkAtt.jsp").forward(req, resp);
+        req.getRequestDispatcher("view/student/AttendanceChecking.jsp").forward(req, resp);
     }
 
     @Override

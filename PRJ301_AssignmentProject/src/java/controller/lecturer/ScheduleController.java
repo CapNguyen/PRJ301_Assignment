@@ -59,7 +59,7 @@ public class ScheduleController extends BaseRequiredAuthenticationController {
         model.Lecturer lecturer = lectureDB.getTimeTable(currentLec.getId(), from, to);
         request.setAttribute("l", lecturer);
 
-        request.getRequestDispatcher("view/attendance/schedule.jsp").forward(request, response);
+        request.getRequestDispatcher("view/lecturer/Schedule.jsp").forward(request, response);
 
     }
 

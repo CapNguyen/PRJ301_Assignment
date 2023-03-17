@@ -37,7 +37,7 @@ public class AttendanceTakingController extends BaseRequiredAuthenticationContro
         ArrayList<Attendance> atts = db.getAttendancesBySession(sessionid);
         request.setAttribute("atts", atts);
         if (a.isRole() == false) {
-            request.getRequestDispatcher("view/attendance/takeAtt.jsp").forward(request, response);
+            request.getRequestDispatcher("view/lecturer/AttendanceTaking.jsp").forward(request, response);
         } else {
             response.getWriter().println("No permission");
         }

@@ -29,7 +29,7 @@ public class StudentController extends BaseRequiredAuthenticationController {
         DBContext<Course> cb = new CourseDBContext();
         ArrayList<Course> courses = cb.all();
         request.setAttribute("courses", courses);
-        request.getRequestDispatcher("../view/student/info.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/student/StudentInfo.jsp").forward(request, response);
     }
 
     @Override

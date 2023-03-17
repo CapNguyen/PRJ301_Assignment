@@ -58,19 +58,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ScheduleController</servlet-name>
-        <url-pattern>/schedule</url-pattern>
+        <url-pattern>/lecturer/schedule</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AttendanceTaking</servlet-name>
-        <url-pattern>/AT</url-pattern>
+        <url-pattern>/lecturer/AT</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AttendanceChecking</servlet-name>
-        <url-pattern>/AC</url-pattern>
+        <url-pattern>/student/AC</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TimeTableController</servlet-name>
-        <url-pattern>/timetable</url-pattern>
+        <url-pattern>/student/timetable</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
