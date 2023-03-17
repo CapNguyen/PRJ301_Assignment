@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controllerAll;
+package controller.session;
 
 import controller.authentication.BaseRequiredAuthenticationController;
+import dal.CourseDBContext;
+import dal.DBContext;
 import dal.LecturerDBContext;
+import dal.SessionDBContext;
 import dal.StudentDBContext;
 import dal.UserDBContext;
 import jakarta.servlet.ServletException;
@@ -13,15 +16,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import model.Course;
 import model.Lecturer;
+import model.Session;
 import model.Student;
 import model.User;
 
-public class LecturerController extends BaseRequiredAuthenticationController{
-    
+public class SessionController extends BaseRequiredAuthenticationController {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         int a = (int) request.getSession().getAttribute("id");
         UserDBContext udb = new UserDBContext();
         User acc = udb.getUser(a);
@@ -30,22 +34,37 @@ public class LecturerController extends BaseRequiredAuthenticationController{
             StudentDBContext studb = new StudentDBContext();
             ArrayList<Student> stu = studb.getStdCode(a);
             request.setAttribute("stu", stu);
-        }else{
+            Student currentStu = stu.get(0);
+            String raw_session = request.getParameter("session");
+            if (raw_session != null) {
+                int session = Integer.parseInt(raw_session);
+                SessionDBContext sb = new SessionDBContext();
+                ArrayList<Session> ses = sb.searchBySesid(session, currentStu.getId());
+                request.setAttribute("sessions", ses);
+            }
+        } else {
             LecturerDBContext lecdb = new LecturerDBContext();
             ArrayList<Lecturer> lect = lecdb.getStdCode(a);
             request.setAttribute("lect", lect);
+            String raw_session = request.getParameter("session");
+            if (raw_session != null) {
+                int session = Integer.parseInt(raw_session);
+                SessionDBContext sb = new SessionDBContext();
+                ArrayList<Session> ses = sb.search(session);
+                request.setAttribute("sessions", ses);
+            }
         }
+        DBContext<Course> cb = new CourseDBContext();
+        ArrayList<Course> courses = cb.all();
+        request.setAttribute("courses", courses);
 
-        String raw_lecturer = request.getParameter("lecturer");
-        if (raw_lecturer != null) {
-            int lecturer = Integer.parseInt(raw_lecturer);
-            LecturerDBContext lb = new LecturerDBContext();
-            ArrayList<Lecturer> lec = lb.get(lecturer);
-            request.setAttribute("lec", lec);
-
-            request.getRequestDispatcher("../view/lecturer/info.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("../view/session/info.jsp").forward(request, response);
     }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {

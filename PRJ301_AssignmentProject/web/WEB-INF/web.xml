@@ -10,15 +10,15 @@
     </servlet>
     <servlet>
         <servlet-name>StudentController</servlet-name>
-        <servlet-class>controllerAll.StudentController</servlet-class>
+        <servlet-class>controller.student.StudentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SessionController</servlet-name>
-        <servlet-class>controllerAll.SessionController</servlet-class>
+        <servlet-class>controller.session.SessionController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LecturerController</servlet-name>
-        <servlet-class>controllerAll.LecturerController</servlet-class>
+        <servlet-class>controller.lecturer.LecturerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
