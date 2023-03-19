@@ -16,15 +16,15 @@ import model.Student;
 public class AttendanceDBContext extends DBContext {
 
     public ArrayList<Attendance> getAttendancesBySession(int sessionid) {
-        String sql = "SELECT s.sid,s.scode,s.sname,\n"
-                + "                 a.aid,\n"
-                + "                 ISNULL(a.astatus,0) as [status],\n"
-                + "                 ISNULL(a.description,'') as [description]\n"
-                + "                 FROM Student s LEFT JOIN [Student_Group] sg ON s.sid = sg.sid\n"
-                + "                 LEFT JOIN [Group] g ON g.gid = sg.gid\n"
-                + "                 LEFT JOIN [Session] ses ON ses.gid = g.gid\n"
-                + "                 LEFT JOIN [Attendance] a ON ses.sessionid = a.sessionid AND s.sid = a.sid\n"
-                + "                 WHERE ses.sessionid = ?";
+        String sql = "SELECT s.sid,s.scode,s.sname,s.Img,\n"
+                + "a.aid,\n"
+                + "ISNULL(a.astatus,0) as [status],\n"
+                + "ISNULL(a.description,'') as [description]\n"
+                + "FROM Student s LEFT JOIN [Student_Group] sg ON s.sid = sg.sid\n"
+                + "LEFT JOIN [Group] g ON g.gid = sg.gid\n"
+                + "LEFT JOIN [Session] ses ON ses.gid = g.gid\n"
+                + "LEFT JOIN [Attendance] a ON ses.sessionid = a.sessionid AND s.sid = a.sid\n"
+                + "WHERE ses.sessionid = ?";
         ArrayList<Attendance> atts = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -42,6 +42,7 @@ public class AttendanceDBContext extends DBContext {
                 s.setId(rs.getInt("sid"));
                 s.setCode(rs.getString("scode"));
                 s.setName(rs.getString("sname"));
+                s.setImg(rs.getString("Img"));
                 a.setStudent(s);
                 atts.add(a);
             }
@@ -70,8 +71,8 @@ public class AttendanceDBContext extends DBContext {
             stm_update_session.executeUpdate();
             for (Attendance a : atts) {
                 if (a.getId() == 0) {
-                    String sql_insert_att = "INSERT INTO [Attendance]([sid],[sessionid],[astatus],[description])\n"
-                            + "VALUES(?,?,?,?)";
+                    String sql_insert_att = "INSERT INTO [Attendance] ([sid],[sessionid],[astatus],[description])\n"
+                            + " VALUES(?,?,?,?)";
                     PreparedStatement stm_insert_att = connection.prepareStatement(sql_insert_att);
                     stm_insert_att.setInt(1, a.getStudent().getId());
                     stm_insert_att.setInt(2, a.getSession().getId());
@@ -80,8 +81,8 @@ public class AttendanceDBContext extends DBContext {
                     stm_insert_att.executeUpdate();
                 } else {
                     String sql_update_att = "UPDATE [Attendance]\n"
-                            + "SET [astatus] = ?,[description] = ?\n"
-                            + "WHERE [aid] = ?";
+                            + "   SET [astatus] = ?,[description] = ?\n"
+                            + " WHERE [aid] = ?";
                     PreparedStatement stm_update_att = connection.prepareStatement(sql_update_att);
                     stm_update_att.setBoolean(1, a.isStatus());
                     stm_update_att.setString(2, a.getDescription());
@@ -109,28 +110,7 @@ public class AttendanceDBContext extends DBContext {
     }
 
     @Override
-    public void insert(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public ArrayList all() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

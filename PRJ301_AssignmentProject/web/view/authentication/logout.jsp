@@ -18,7 +18,7 @@
                 <form action="login" method="post" class="form">
 
                     <div class="form__field">
-                        <input type="email" placeholder="username">
+                        <input type="email" placeholder="Accountname">
                     </div>
 
                     <div class="form__field">

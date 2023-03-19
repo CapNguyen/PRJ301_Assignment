@@ -103,7 +103,7 @@ public class SessionDBContext extends DBContext {
                     + "INNER JOIN [Group] g ON ses.gid = g.gid\n"
                     + "INNER JOIN Student_Group sg ON sg.gid = g.gid\n"
                     + "INNER JOIN Student s ON s.sid = sg.sid\n"
-                    + "LEFT JOIN Attendance a ON a.sid = s.sid AND ses.sessionid = a.sessionid\n"
+                    + "LEFT JOIN Attendance a ON a.sid = s.sid AND ses.sessionid = a.aid\n"
                     + "WHERE s.sid = ? AND c.cid = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, sid);
@@ -130,7 +130,7 @@ public class SessionDBContext extends DBContext {
 
                 TimeSlot ts = new TimeSlot();
                 ts.setId(rs.getInt("tid"));
-                ts.setDescription(rs.getString("description"));
+                ts.setName(rs.getString("description"));
                 ss.setSlot(ts);
 
                 Attendance a = new Attendance();
@@ -163,7 +163,7 @@ public class SessionDBContext extends DBContext {
         return ses;
     }
 
-    public ArrayList<Session> searchBySesid(int sessionid, int sid) {
+    public ArrayList<Session> searchBySession(int sessionid, int sid) {
         ArrayList<Session> ses = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -233,27 +233,6 @@ public class SessionDBContext extends DBContext {
             }
         }
         return ses;
-
-    }
-
-    @Override
-    public void insert(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

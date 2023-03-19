@@ -7,22 +7,21 @@
         <title>Login</title>
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/login.css" rel="stylesheet" type="text/css"/>
-    </head>
+        <link href="../../css/login.css" rel="stylesheet" type="text/css"/>
+   </head>
     <body class="align">
 
         <div class="grid align__item">
-
             <div class="login">
-                <img src="img/FPT_logo_2010.svg.png" alt=""/>
-                <form action="login" method="post" class="form">
+                <img src="../../img/FPT_logo_2010.svg.png" alt=""/>
+                <form action="login" method="POST" class="form">
 
                     <div class="form__field">
-                        <input type="email" placeholder="username">
+                        <input type="email" placeholder="Accountname" name="Accountname">
                     </div>
 
                     <div class="form__field">
-                        <input type="password" placeholder="•••••••••">
+                        <input type="password" placeholder="•••••••••" name="password">
                     </div>
 
                     <div class="form__field">

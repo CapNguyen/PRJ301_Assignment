@@ -4,7 +4,8 @@
  */
 package controller.student;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
+import dal.CampusDBContext;
 import dal.CourseDBContext;
 import dal.SessionDBContext;
 import dal.StudentDBContext;
@@ -16,10 +17,12 @@ import java.util.ArrayList;
 import model.Course;
 import model.Session;
 import model.Student;
-import model.User;
+import model.Account;
+import model.Campus;
 
-public class AttendanceChecking extends BaseRequiredAuthenticationController{
-      protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
+public class AttendanceChecking extends BaseRequiredAuthenticatedController {
+
+    protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         int a = (int) req.getSession().getAttribute("id");
         StudentDBContext studb = new StudentDBContext();
@@ -27,8 +30,12 @@ public class AttendanceChecking extends BaseRequiredAuthenticationController{
         req.setAttribute("stu", stu);
         Student currentStu = stu.get(0);
 
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(a);
+        req.setAttribute("camps", camps);
+
         CourseDBContext cb = new CourseDBContext();
-        ArrayList<Course> courses = cb.getStudentCourse(currentStu.getId());
+        ArrayList<Course> courses = cb.getStdCourse(currentStu.getId());
         req.setAttribute("courses", courses);
         String raw_course = req.getParameter("course");
         if (raw_course != null) {
@@ -37,16 +44,17 @@ public class AttendanceChecking extends BaseRequiredAuthenticationController{
             ArrayList<Session> ses1 = sdb.checkAtt(course, currentStu.getId());
             req.setAttribute("ses1", ses1);
         }
-        req.getRequestDispatcher("view/student/AttendanceChecking.jsp").forward(req, resp);
+        req.getRequestDispatcher("view/attendance/checkAtt.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
+
 }

@@ -5,6 +5,8 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
 
 public class Session {
 

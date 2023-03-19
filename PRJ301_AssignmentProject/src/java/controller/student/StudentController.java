@@ -4,7 +4,8 @@
  */
 package controller.student;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
+import dal.CampusDBContext;
 import dal.CourseDBContext;
 import dal.DBContext;
 import dal.StudentDBContext;
@@ -15,9 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import model.Course;
 import model.Student;
-import model.User;
+import model.Account;
+import model.Campus;
 
-public class StudentController extends BaseRequiredAuthenticationController {
+public class StudentController extends BaseRequiredAuthenticatedController {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -26,19 +28,23 @@ public class StudentController extends BaseRequiredAuthenticationController {
         ArrayList<Student> stu = studb.getStdCode(a);
         request.setAttribute("stu", stu);
 
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(a);
+        request.setAttribute("camps", camps);
+
         DBContext<Course> cb = new CourseDBContext();
         ArrayList<Course> courses = cb.all();
         request.setAttribute("courses", courses);
-        request.getRequestDispatcher("../view/student/StudentInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/student/info.jsp").forward(request, response);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 }

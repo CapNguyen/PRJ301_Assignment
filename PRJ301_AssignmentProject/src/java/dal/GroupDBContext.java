@@ -12,8 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Group;
 
-public class GroupDBContext extends DBContext{
-    
+
+public class GroupDBContext extends DBContext {
+
     public ArrayList<Group> search(int course) {
         ArrayList<Group> groups = new ArrayList<>();
         PreparedStatement stm = null;
@@ -56,7 +57,6 @@ public class GroupDBContext extends DBContext{
         return groups;
     }
 
-    @Override
     public ArrayList<Group> all() {
         ArrayList<Group> groups = new ArrayList<>();
         PreparedStatement stm = null;
@@ -69,6 +69,7 @@ public class GroupDBContext extends DBContext{
                 Group g = new Group();
                 g.setId(rs.getInt("gid"));
                 g.setName(rs.getString("gname"));
+
                 groups.add(g);
             }
 
@@ -95,23 +96,4 @@ public class GroupDBContext extends DBContext{
         return groups;
     }
 
-    @Override
-    public void insert(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

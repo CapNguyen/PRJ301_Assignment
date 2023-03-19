@@ -11,44 +11,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Account;
 import model.Course;
 import model.Group;
 import model.Lecturer;
 import model.Room;
 import model.Session;
 import model.TimeSlot;
-import model.User;
 
 public class LecturerDBContext extends DBContext {
-
-    @Override
-    public void insert(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ArrayList all() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     public ArrayList<Lecturer> get(int id) {
         ArrayList<Lecturer> lecturers = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT l.lid,l.lcode, l.lname, l.userID, a.userName\n"
-                    + "FROM Lecturer l INNER JOIN [User] a\n"
-                    + "ON l.userID = a.userID\n"
+            String sql = "SELECT l.lid,l.lcode, l.lname, l.Img, l.Email, l.accountID, a.accountName\n"
+                    + "FROM Lecturer l INNER JOIN Account a\n"
+                    + "ON l.accountID = a.accountID\n"
                     + "WHERE l.lid = ?\n";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
@@ -59,10 +39,12 @@ public class LecturerDBContext extends DBContext {
                 l.setId(rs.getInt("lid"));
                 l.setName(rs.getString("lname"));
                 l.setCode(rs.getString("lcode"));
-                User a = new User();
-                a.setId(rs.getInt("userID"));
-                a.setUsername(rs.getString("userName"));
-                l.setUser(a);
+                l.setImg(rs.getString("Img"));
+                l.setEmail(rs.getString("Email"));
+                Account a = new Account();
+                a.setAccID(rs.getInt("accountID"));
+                a.setAccountName(rs.getString("accountName"));
+                l.setAccount(a);
 
                 lecturers.add(l);
             }
@@ -94,10 +76,10 @@ public class LecturerDBContext extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT l.lid,l.lcode, l.lname, l.userID, a.userName\n"
-                    + "FROM Lecturer l INNER JOIN [User] a\n"
-                    + "ON l.userID = a.userID\n"
-                    + "WHERE l.userID = ?\n";
+            String sql = "SELECT l.lid,l.lcode, l.lname, l.Img, l.Email, l.accountID, a.accountName\n"
+                    + "FROM Lecturer l INNER JOIN Account a\n"
+                    + "ON l.accountID = a.accountID\n"
+                    + "WHERE l.accountID = ?\n";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             rs = stm.executeQuery();
@@ -107,10 +89,12 @@ public class LecturerDBContext extends DBContext {
                 l.setId(rs.getInt("lid"));
                 l.setName(rs.getString("lname"));
                 l.setCode(rs.getString("lcode"));
-                User a = new User();
-                a.setId(rs.getInt("userID"));
-                a.setUsername(rs.getString("userName"));
-                l.setUser(a);
+                l.setImg(rs.getString("Img"));
+                l.setEmail(rs.getString("Email"));
+                Account a = new Account();
+                a.setAccID(rs.getInt("accountID"));
+                a.setAccountName(rs.getString("accountName"));
+                l.setAccount(a);
 
                 lecturers.add(l);
             }
@@ -185,7 +169,7 @@ public class LecturerDBContext extends DBContext {
 
                 TimeSlot t = new TimeSlot();
                 t.setId(rs.getInt("tid"));
-                t.setDescription(rs.getString("description"));
+                t.setName(rs.getString("description"));
                 ses.setSlot(t);
 
                 lecturer.getSessions().add(ses);
@@ -202,5 +186,10 @@ public class LecturerDBContext extends DBContext {
             }
         }
         return lecturer;
+    }
+
+    @Override
+    public ArrayList all() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

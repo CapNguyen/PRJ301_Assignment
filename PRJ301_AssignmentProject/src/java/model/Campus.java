@@ -6,11 +6,19 @@ package model;
 
 import java.util.ArrayList;
 
-public class TimeSlot {
+public class Campus {
 
     private int id;
     private String name;
-    private ArrayList<Session> sessions = new ArrayList<>();
+    ArrayList<Account> accounts = new ArrayList<>();
+
+    public ArrayList<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(ArrayList<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public int getId() {
         return id;
@@ -26,14 +34,6 @@ public class TimeSlot {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public ArrayList<Session> getSessions() {
-        return sessions;
-    }
-
-    public void setSessions(ArrayList<Session> sessions) {
-        this.sessions = sessions;
     }
 
 }

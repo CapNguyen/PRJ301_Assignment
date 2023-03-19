@@ -4,13 +4,14 @@
  */
 package controller.student;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
 import dal.CourseDBContext;
 import dal.DBContext;
 import dal.GroupDBContext;
 import dal.LecturerDBContext;
 import dal.StudentDBContext;
-import dal.UserDBContext;
+import dal.AccountDBContext;
+import dal.CampusDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,26 +21,31 @@ import model.Course;
 import model.Group;
 import model.Lecturer;
 import model.Student;
-import model.User;
+import model.Account;
+import model.Campus;
 
 
-public class GroupController extends BaseRequiredAuthenticationController {
+public class GroupController extends BaseRequiredAuthenticatedController {
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int a = (int) req.getSession().getAttribute("id");
 
-        UserDBContext udb = new UserDBContext();
-        User acc = udb.getUser(a);
+        AccountDBContext udb = new AccountDBContext();
+        Account acc = udb.getAccount(a);
         req.setAttribute("role", a);
         if (acc.isRole() == true) {
             StudentDBContext studb = new StudentDBContext();
             ArrayList<Student> stu = studb.getStdCode(a);
             req.setAttribute("stu", stu);
-        } else {
+        }else{
             LecturerDBContext lecdb = new LecturerDBContext();
             ArrayList<Lecturer> lect = lecdb.getStdCode(a);
             req.setAttribute("lect", lect);
         }
+
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(a);
+        req.setAttribute("camps", camps);
 
         DBContext<Course> cb = new CourseDBContext();
         ArrayList<Course> courses = cb.all();
@@ -59,16 +65,16 @@ public class GroupController extends BaseRequiredAuthenticationController {
             ArrayList<Student> students = db.search(classe);
             req.setAttribute("students", students);
         }
-        req.getRequestDispatcher("../view/student/GroupInfo.jsp").forward(req, resp);
+        req.getRequestDispatcher("../view/student/group.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 }

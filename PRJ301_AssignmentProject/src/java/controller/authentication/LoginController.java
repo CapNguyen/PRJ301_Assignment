@@ -4,13 +4,13 @@
  */
 package controller.authentication;
 
-import dal.UserDBContext;
+import dal.AccountDBContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.User;
+import model.Account;
 
 public class LoginController extends HttpServlet {
 
@@ -25,20 +25,21 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        UserDBContext db = new UserDBContext();
-        User user = db.get(username, password);
-        if (user != null) {
-            int id = user.getId();
+        int campus = Integer.parseInt(request.getParameter("campus"));
+        AccountDBContext db = new AccountDBContext();
+        Account acc = db.get(username, password, campus);
+        if (acc != null) {
+            int id = acc.getAccID();
             request.getSession().setAttribute("id", id);
-            request.getSession().setAttribute("user", user);
-            if (user.isRole() == true) {
+            request.getSession().setAttribute("acc", acc);
+            if (acc.isRole() == true) {
                 response.sendRedirect("timetable");
             } else {
                 response.sendRedirect("schedule");
             }
         } else {
-            request.getRequestDispatcher("view/authentication/login_failed.jsp").forward(request, response);
-
+            response.getWriter().println("Account doesn/'/t exist");
         }
     }
+
 }

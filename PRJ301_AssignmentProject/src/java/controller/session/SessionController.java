@@ -4,13 +4,14 @@
  */
 package controller.session;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
 import dal.CourseDBContext;
 import dal.DBContext;
 import dal.LecturerDBContext;
 import dal.SessionDBContext;
 import dal.StudentDBContext;
-import dal.UserDBContext;
+import dal.AccountDBContext;
+import dal.CampusDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,15 +21,16 @@ import model.Course;
 import model.Lecturer;
 import model.Session;
 import model.Student;
-import model.User;
+import model.Account;
+import model.Campus;
 
-public class SessionController extends BaseRequiredAuthenticationController {
+public class SessionController extends BaseRequiredAuthenticatedController {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int a = (int) request.getSession().getAttribute("id");
-        UserDBContext udb = new UserDBContext();
-        User acc = udb.getUser(a);
+        AccountDBContext udb = new AccountDBContext();
+        Account acc = udb.getAccount(a);
         request.setAttribute("role", a);
         if (acc.isRole() == true) {
             StudentDBContext studb = new StudentDBContext();
@@ -39,7 +41,7 @@ public class SessionController extends BaseRequiredAuthenticationController {
             if (raw_session != null) {
                 int session = Integer.parseInt(raw_session);
                 SessionDBContext sb = new SessionDBContext();
-                ArrayList<Session> ses = sb.searchBySesid(session, currentStu.getId());
+                ArrayList<Session> ses = sb.searchBySession(session, currentStu.getId());
                 request.setAttribute("sessions", ses);
             }
         } else {
@@ -54,20 +56,23 @@ public class SessionController extends BaseRequiredAuthenticationController {
                 request.setAttribute("sessions", ses);
             }
         }
+
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(a);
+        request.setAttribute("camps", camps);
+
         DBContext<Course> cb = new CourseDBContext();
         ArrayList<Course> courses = cb.all();
         request.setAttribute("courses", courses);
 
-        request.getRequestDispatcher("../view/session/SesionInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/session/info.jsp").forward(request, response);
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 }

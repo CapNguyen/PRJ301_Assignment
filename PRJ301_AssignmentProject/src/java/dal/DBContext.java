@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Course;
 
 public abstract class DBContext<T> {
 
@@ -17,11 +18,11 @@ public abstract class DBContext<T> {
 
     public DBContext() {
         try {
-            String url = "jdbc:sqlserver://localhost\\MSSQL:1433;databaseName=PRJ_Assignment";
-            String user = "hieunm";
+            String url = "jdbc:sqlserver://localhost\\MSSQL:1433;databaseName=Assignment";
+            String Account = "hieunm";
             String pass = "15012003";
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, user, pass);
+            connection = DriverManager.getConnection(url, Account, pass);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -29,13 +30,6 @@ public abstract class DBContext<T> {
         }
     }
 
-    public abstract void insert(T model);
-
-    public abstract void update(T model);
-
-    public abstract void delete(T model);
-
-    public abstract T get(int id);
-
     public abstract ArrayList<T> all();
+
 }

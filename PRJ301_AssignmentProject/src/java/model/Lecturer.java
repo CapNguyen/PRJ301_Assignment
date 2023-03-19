@@ -11,7 +11,9 @@ public class Lecturer {
     private int id;
     private String name;
     private String code;
-    private User user;
+    private String img;
+    private String email;
+    private Account account;
     private ArrayList<Session> sessions = new ArrayList<>();
 
     public String getCode() {
@@ -38,7 +40,21 @@ public class Lecturer {
         this.name = name;
     }
 
+    public String getImg() {
+        return img;
+    }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public ArrayList<Session> getSessions() {
         return sessions;
@@ -48,13 +64,12 @@ public class Lecturer {
         this.sessions = sessions;
     }
 
-    public User getUser() {
-        return user;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAccount(Account account) {
+        this.account = account;
     }
-
 
 }

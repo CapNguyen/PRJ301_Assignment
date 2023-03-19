@@ -12,27 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.TimeSlot;
 
-public class TimeSlotDBContext extends DBContext {
-
-    @Override
-    public void insert(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void update(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+public class SlotDBContext extends DBContext {
 
     @Override
     public ArrayList<TimeSlot> all() {
@@ -48,19 +28,19 @@ public class TimeSlotDBContext extends DBContext {
             while (rs.next()) {
                 TimeSlot d = new TimeSlot();
                 d.setId(rs.getInt("tid"));
-                d.setDescription(rs.getString("description"));
+                d.setName(rs.getString("description"));
                 slots.add(d);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(TimeSlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 rs.close();
                 stm.close();
                 connection.close();
             } catch (SQLException ex) {
-                Logger.getLogger(TimeSlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SlotDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return slots;

@@ -4,10 +4,11 @@
  */
 package controller.lecturer;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
 import dal.AttendanceDBContext;
 import dal.LecturerDBContext;
-import dal.UserDBContext;
+import dal.AccountDBContext;
+import dal.CampusDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,16 +18,21 @@ import model.Attendance;
 import model.Lecturer;
 import model.Session;
 import model.Student;
-import model.User;
+import model.Account;
+import model.Campus;
 
-public class AttendanceTakingController extends BaseRequiredAuthenticationController {
+public class AttendanceTakingController extends BaseRequiredAuthenticatedController {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         int id = (int) request.getSession().getAttribute("id");
-        UserDBContext udb = new UserDBContext();
-        User a = udb.getUser(id);
+        AccountDBContext udb = new AccountDBContext();
+        Account a = udb.getAccount(id);
         request.setAttribute("role", a);
+
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(id);
+        request.setAttribute("camps", camps);
 
         LecturerDBContext lecdb = new LecturerDBContext();
         ArrayList<Lecturer> lec = lecdb.getStdCode(id);
@@ -37,14 +43,12 @@ public class AttendanceTakingController extends BaseRequiredAuthenticationContro
         ArrayList<Attendance> atts = db.getAttendancesBySession(sessionid);
         request.setAttribute("atts", atts);
         if (a.isRole() == false) {
-            request.getRequestDispatcher("view/lecturer/AttendanceTaking.jsp").forward(request, response);
-        } else {
-            response.getWriter().println("No permission");
+            request.getRequestDispatcher("view/attendance/takeAtt.jsp").forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         String[] sids = request.getParameterValues("sid");
         int sessionid = Integer.parseInt(request.getParameter("sessionid"));
         Session ss = new Session();
@@ -69,4 +73,5 @@ public class AttendanceTakingController extends BaseRequiredAuthenticationContro
         db.update(atts, sessionid);
         response.sendRedirect("schedule");
     }
+
 }

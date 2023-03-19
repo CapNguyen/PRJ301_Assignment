@@ -5,7 +5,6 @@
 package controller.authentication;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +14,7 @@ public class LogoutController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("user", null);
+        request.getSession().setAttribute("Account", null);
         request.getRequestDispatcher("view/authentication/logout.jsp").forward(request, response);
     }
 

@@ -4,9 +4,10 @@
  */
 package controller.lecturer;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
+import dal.CampusDBContext;
 import dal.LecturerDBContext;
-import dal.TimeSlotDBContext;
+import dal.SlotDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,12 +19,13 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import model.Lecturer;
 import model.TimeSlot;
-import model.User;
+import model.Account;
+import model.Campus;
 import util.DateTimeHelper;
 
-public class ScheduleController extends BaseRequiredAuthenticationController {
+public class ScheduleController extends BaseRequiredAuthenticatedController {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ZoneId zonedId = ZoneId.of("Asia/Ho_Chi_Minh");
         LocalDate today = LocalDate.now(zonedId);
@@ -32,13 +34,16 @@ public class ScheduleController extends BaseRequiredAuthenticationController {
         LocalDate then = LocalDate.from(oneWeek);
         int id = (int) request.getSession().getAttribute("id");
         String raw_from = request.getParameter("from");
-        String raw_to = request.getParameter("to");
+        String raw_to = request.getParameter("to");;
 
         LecturerDBContext lecdb = new LecturerDBContext();
         ArrayList<Lecturer> lec = lecdb.getStdCode(id);
         request.setAttribute("lec", lec);
         Lecturer currentLec = lec.get(0);
-
+        
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(id);
+        request.setAttribute("camps", camps);
         Date from;
         Date to;
         if (raw_from != null && raw_to != null) {
@@ -48,7 +53,7 @@ public class ScheduleController extends BaseRequiredAuthenticationController {
             from = Date.valueOf(today);
             to = Date.valueOf(then);
         }
-        TimeSlotDBContext timeDB = new TimeSlotDBContext();
+        SlotDBContext timeDB = new SlotDBContext();
         ArrayList<TimeSlot> slots = timeDB.all();
         request.setAttribute("slots", slots);
 
@@ -59,17 +64,18 @@ public class ScheduleController extends BaseRequiredAuthenticationController {
         model.Lecturer lecturer = lectureDB.getTimeTable(currentLec.getId(), from, to);
         request.setAttribute("l", lecturer);
 
-        request.getRequestDispatcher("view/lecturer/Schedule.jsp").forward(request, response);
+        request.getRequestDispatcher("view/attendance/schedule.jsp").forward(request, response);
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+   @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+   @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
+
 }

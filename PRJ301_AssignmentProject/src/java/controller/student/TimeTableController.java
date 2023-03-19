@@ -4,9 +4,10 @@
  */
 package controller.student;
 
-import controller.authentication.BaseRequiredAuthenticationController;
+import controller.authentication.BaseRequiredAuthenticatedController;
+import dal.CampusDBContext;
 import dal.StudentDBContext;
-import dal.TimeSlotDBContext;
+import dal.SlotDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,12 +19,13 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import model.Student;
 import model.TimeSlot;
-import model.User;
+import model.Account;
+import model.Campus;
 import util.DateTimeHelper;
 
-public class TimeTableController extends BaseRequiredAuthenticationController {
+public class TimeTableController extends BaseRequiredAuthenticatedController {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ZoneId zonedId = ZoneId.of("Asia/Ho_Chi_Minh");
         LocalDate today = LocalDate.now(zonedId);
@@ -38,6 +40,9 @@ public class TimeTableController extends BaseRequiredAuthenticationController {
         request.setAttribute("stu", stu);
         Student stud1 = stu.get(0);
 
+        CampusDBContext camp = new CampusDBContext();
+        ArrayList<Campus> camps = camp.search(id);
+        request.setAttribute("camps", camps);
         Date from;
         Date to;
         if (raw_from != null && raw_to != null) {
@@ -47,7 +52,7 @@ public class TimeTableController extends BaseRequiredAuthenticationController {
             from = Date.valueOf(today);
             to = Date.valueOf(then);
         }
-        TimeSlotDBContext timeDB = new TimeSlotDBContext();
+        SlotDBContext timeDB = new SlotDBContext();
         ArrayList<TimeSlot> slots = timeDB.all();
         request.setAttribute("slots", slots);
 
@@ -58,17 +63,16 @@ public class TimeTableController extends BaseRequiredAuthenticationController {
         model.Student student = stuDB.getTimeTable(stud1.getId(), from, to);
         request.setAttribute("s", student);
 
-        request.getRequestDispatcher("view/student/Timetable.jsp").forward(request, response);
+        request.getRequestDispatcher("view/attendance/timetable.jsp").forward(request, response);
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User acc) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 }

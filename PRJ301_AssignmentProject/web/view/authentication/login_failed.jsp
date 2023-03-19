@@ -20,7 +20,7 @@
                 <img src="img/FPT_logo_2010.svg.png" alt=""/>
                 <form action="login" method="post" class="form">
                     <div class="form__field">
-                        <input type="email" placeholder="username">
+                        <input type="email" placeholder="Accountname">
                     </div>
                     <div class="form__field">
                         <input type="password" placeholder="•••••••••">

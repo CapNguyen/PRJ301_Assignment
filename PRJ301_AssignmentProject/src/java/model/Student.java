@@ -4,15 +4,21 @@
  */
 package model;
 
+import java.sql.Date;
 import java.util.ArrayList;
+
 
 public class Student {
 
     private int id;
     private String code;
     private String name;
+    private String img;
+    private String email;
+    private int contact;
     private boolean gender;
-    private User user;
+    private Date dob;
+    private Account account;
     private Attendance attendance;
     ArrayList<Group> groups = new ArrayList<>();
 
@@ -40,12 +46,44 @@ public class Student {
         this.name = name;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getContact() {
+        return contact;
+    }
+
+    public void setContact(int contact) {
+        this.contact = contact;
+    }
+
     public boolean isGender() {
         return gender;
     }
 
     public void setGender(boolean gender) {
         this.gender = gender;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public ArrayList<Group> getGroups() {
@@ -56,12 +94,12 @@ public class Student {
         this.groups = groups;
     }
 
-    public User getUser() {
-        return user;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Attendance getAttendance() {

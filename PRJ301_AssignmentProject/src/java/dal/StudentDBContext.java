@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.User;
+import model.Account;
 import model.Attendance;
 import model.Course;
 import model.Group;
@@ -29,8 +29,7 @@ public class StudentDBContext extends DBContext<Student> {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT [sid],[scode],[sname],[Gender],[userID]\n"
-                    + "  FROM [Student]";
+            String sql = "SELECT [sid], scode, sname, Img, Email, Contact, Gender, Dob, accountID FROM Student";
             stm = connection.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -38,10 +37,14 @@ public class StudentDBContext extends DBContext<Student> {
                 s.setId(rs.getInt("[sid]"));
                 s.setCode(rs.getString("scode"));
                 s.setName(rs.getString("sname"));
+                s.setImg(rs.getString("Img"));
+                s.setEmail(rs.getString("Email"));
+                s.setContact(rs.getInt("Contact"));
                 s.setGender(rs.getBoolean("Gender"));
-                User a = new User();
-                a.setId(rs.getInt("userID"));
-                s.setUser(a);
+                s.setDob(rs.getDate("Dob"));
+                Account a = new Account();
+                a.setAccID(rs.getInt("accountID"));
+                s.setAccount(a);
                 students.add(s);
             }
 
@@ -73,7 +76,7 @@ public class StudentDBContext extends DBContext<Student> {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT s.[sid], s.scode, s.sname, s.Gender, s.userID\n"
+            String sql = "SELECT s.[sid], s.scode, s.sname, s.Img, s.Email, s.Contact, s.Gender, s.Dob, s.accountID\n"
                     + "FROM Student s INNER JOIN Student_Group sg\n"
                     + "ON s.[sid] = sg.[sid]\n"
                     + "WHERE sg.gid = ?\n";
@@ -86,10 +89,14 @@ public class StudentDBContext extends DBContext<Student> {
                 s.setId(rs.getInt("sid"));
                 s.setCode(rs.getString("scode"));
                 s.setName(rs.getString("sname"));
+                s.setImg(rs.getString("Img"));
+                s.setEmail(rs.getString("Email"));
+                s.setContact(rs.getInt("Contact"));
                 s.setGender(rs.getBoolean("Gender"));
-                User a = new User();
-                a.setId(rs.getInt("userID"));
-                s.setUser(a);
+                s.setDob(rs.getDate("Dob"));
+                Account a = new Account();
+                a.setAccID(rs.getInt("accountID"));
+                s.setAccount(a);
                 students.add(s);
             }
         } catch (SQLException ex) {
@@ -120,23 +127,28 @@ public class StudentDBContext extends DBContext<Student> {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT s.sid, s.scode, s.sname, s.Gender, s.userID, a.userName\n"
-                    + "FROM Student s INNER JOIN User a\n"
-                    + "ON s.userID = a.userID\n"
-                    + "WHERE a.userID = ?\n";
+            String sql = "SELECT s.sid, s.scode, s.sname, s.Img, s.Email, s.Contact, s.Gender, s.Dob, s.accountID, a.accountName\n"
+                    + "FROM Student s INNER JOIN Account a\n"
+                    + "ON s.accountID = a.accountID\n"
+                    + "WHERE a.accountID = ?\n";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, id);
             rs = stm.executeQuery();
+
             while (rs.next()) {
                 Student s = new Student();
                 s.setId(rs.getInt("sid"));
                 s.setCode(rs.getString("scode"));
                 s.setName(rs.getString("sname"));
+                s.setImg(rs.getString("Img"));
+                s.setEmail(rs.getString("Email"));
+                s.setContact(rs.getInt("Contact"));
                 s.setGender(rs.getBoolean("Gender"));
-                User a = new User();
-                a.setId(rs.getInt("userID"));
-                a.setUsername(rs.getString("userName"));
-                s.setUser(a);
+                s.setDob(rs.getDate("Dob"));
+                Account a = new Account();
+                a.setAccID(rs.getInt("accountID"));
+                a.setAccountName(rs.getString("accountName"));
+                s.setAccount(a);
                 students.add(s);
             }
         } catch (SQLException ex) {
@@ -230,7 +242,7 @@ public class StudentDBContext extends DBContext<Student> {
 
                 TimeSlot t = new TimeSlot();
                 t.setId(rs.getInt("tid"));
-                t.setDescription(rs.getString("description"));
+                t.setName(rs.getString("description"));
                 ses.setSlot(t);
 
                 currentGroup.getSessions().add(ses);
@@ -247,25 +259,5 @@ public class StudentDBContext extends DBContext<Student> {
             }
         }
         return student;
-    }
-
-    @Override
-    public void update(Student model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Student get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void insert(Student model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Student model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
