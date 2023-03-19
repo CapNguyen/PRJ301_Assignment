@@ -65,7 +65,7 @@ public class GroupController extends BaseRequiredAuthenticatedController {
             ArrayList<Student> students = db.search(classe);
             req.setAttribute("students", students);
         }
-        req.getRequestDispatcher("../view/student/group.jsp").forward(req, resp);
+        req.getRequestDispatcher("../view/student/GroupInfo.jsp").forward(req, resp);
     }
 
     @Override

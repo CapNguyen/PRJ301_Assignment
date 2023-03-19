@@ -65,7 +65,7 @@ public class SessionController extends BaseRequiredAuthenticatedController {
         ArrayList<Course> courses = cb.all();
         request.setAttribute("courses", courses);
 
-        request.getRequestDispatcher("../view/session/info.jsp").forward(request, response);
+        request.getRequestDispatcher("../view/session/SessionInfo.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {

@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller.student;
+package controller.task;
 
 import controller.authentication.BaseRequiredAuthenticatedController;
 import dal.CampusDBContext;
-import dal.StudentDBContext;
+import dal.LecturerDBContext;
 import dal.SlotDBContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,15 +17,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import model.Student;
+import model.Lecturer;
 import model.TimeSlot;
 import model.Account;
 import model.Campus;
 import util.DateTimeHelper;
 
-public class TimeTableController extends BaseRequiredAuthenticatedController {
+public class ScheduleController extends BaseRequiredAuthenticatedController {
 
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ZoneId zonedId = ZoneId.of("Asia/Ho_Chi_Minh");
         LocalDate today = LocalDate.now(zonedId);
@@ -34,12 +34,13 @@ public class TimeTableController extends BaseRequiredAuthenticatedController {
         LocalDate then = LocalDate.from(oneWeek);
         int id = (int) request.getSession().getAttribute("id");
         String raw_from = request.getParameter("from");
-        String raw_to = request.getParameter("to");
-        StudentDBContext studbs = new StudentDBContext();
-        ArrayList<Student> stu = studbs.getStdCode(id);
-        request.setAttribute("stu", stu);
-        Student stud1 = stu.get(0);
+        String raw_to = request.getParameter("to");;
 
+        LecturerDBContext lecdb = new LecturerDBContext();
+        ArrayList<Lecturer> lec = lecdb.getStdCode(id);
+        request.setAttribute("lec", lec);
+        Lecturer currentLec = lec.get(0);
+        
         CampusDBContext camp = new CampusDBContext();
         ArrayList<Campus> camps = camp.search(id);
         request.setAttribute("camps", camps);
@@ -59,20 +60,22 @@ public class TimeTableController extends BaseRequiredAuthenticatedController {
         ArrayList<Date> dates = DateTimeHelper.getListDate(from, to);
         request.setAttribute("dates", dates);
 
-        StudentDBContext stuDB = new StudentDBContext();
-        model.Student student = stuDB.getTimeTable(stud1.getId(), from, to);
-        request.setAttribute("s", student);
+        LecturerDBContext lectureDB = new LecturerDBContext();
+        model.Lecturer lecturer = lectureDB.getTimeTable(currentLec.getId(), from, to);
+        request.setAttribute("l", lecturer);
 
-        request.getRequestDispatcher("view/attendance/timetable.jsp").forward(request, response);
+        request.getRequestDispatcher("view/task/Schedule.jsp").forward(request, response);
 
     }
 
-
+   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
 
+   @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response, Account acc) throws ServletException, IOException {
         processRequest(request, response);
     }
+
 }

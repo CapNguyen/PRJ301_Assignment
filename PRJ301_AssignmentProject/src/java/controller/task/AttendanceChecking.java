@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller.student;
+package controller.task;
 
 import controller.authentication.BaseRequiredAuthenticatedController;
 import dal.CampusDBContext;
@@ -44,7 +44,7 @@ public class AttendanceChecking extends BaseRequiredAuthenticatedController {
             ArrayList<Session> ses1 = sdb.checkAtt(course, currentStu.getId());
             req.setAttribute("ses1", ses1);
         }
-        req.getRequestDispatcher("view/attendance/checkAtt.jsp").forward(req, resp);
+        req.getRequestDispatcher("view/task/AttendanceChecking.jsp").forward(req, resp);
     }
 
     @Override

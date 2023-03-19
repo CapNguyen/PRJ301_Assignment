@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controller.lecturer;
+package controller.task;
 
 import controller.authentication.BaseRequiredAuthenticatedController;
 import dal.AttendanceDBContext;
@@ -43,7 +43,7 @@ public class AttendanceTakingController extends BaseRequiredAuthenticatedControl
         ArrayList<Attendance> atts = db.getAttendancesBySession(sessionid);
         request.setAttribute("atts", atts);
         if (a.isRole() == false) {
-            request.getRequestDispatcher("view/attendance/takeAtt.jsp").forward(request, response);
+            request.getRequestDispatcher("view/task/AttendanceTaking.jsp").forward(request, response);
         }
     }
 

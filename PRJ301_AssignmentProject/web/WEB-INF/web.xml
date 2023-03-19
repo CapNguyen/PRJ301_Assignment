@@ -9,12 +9,8 @@
         <servlet-class>controller.authentication.LogoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StudentController</servlet-name>
-        <servlet-class>controller.student.StudentController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SessionController</servlet-name>
-        <servlet-class>controller.session.SessionController</servlet-class>
+        <servlet-name>AttendanceTakingController</servlet-name>
+        <servlet-class>controller.task.AttendanceTakingController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LecturerController</servlet-name>
@@ -22,19 +18,27 @@
     </servlet>
     <servlet>
         <servlet-name>ScheduleController</servlet-name>
-        <servlet-class>controller.lecturer.ScheduleController</servlet-class>
+        <servlet-class>controller.task.ScheduleController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AttendanceTaking</servlet-name>
-        <servlet-class>controller.lecturer.AttendanceTakingController</servlet-class>
+        <servlet-name>SessionController</servlet-name>
+        <servlet-class>controller.session.SessionController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AttendanceChecking</servlet-name>
-        <servlet-class>controller.student.AttendanceChecking</servlet-class>
+        <servlet-name>AttendanceCheckingController</servlet-name>
+        <servlet-class>controller.task.AttendanceChecking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GroupController</servlet-name>
+        <servlet-class>controller.student.GroupController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StudentController</servlet-name>
+        <servlet-class>controller.student.StudentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TimeTableController</servlet-name>
-        <servlet-class>controller.student.TimeTableController</servlet-class>
+        <servlet-class>controller.task.TimeTableController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -45,23 +49,7 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StudentController</servlet-name>
-        <url-pattern>/student/info</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SessionController</servlet-name>
-        <url-pattern>/session/info</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TimeTableController</servlet-name>
-        <url-pattern>/timetable</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AttendanceChecking</servlet-name>
-        <url-pattern>/AC</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AttendanceTaking</servlet-name>
+        <servlet-name>AttendanceTakingController</servlet-name>
         <url-pattern>/AT</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -69,8 +57,28 @@
         <url-pattern>/schedule</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AttendanceCheckingController</servlet-name>
+        <url-pattern>/AC</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TimeTableController</servlet-name>
+        <url-pattern>/timetable</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LecturerController</servlet-name>
         <url-pattern>/lecturer/info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SessionController</servlet-name>
+        <url-pattern>/session/info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StudentController</servlet-name>
+        <url-pattern>/student/info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GroupController</servlet-name>
+        <url-pattern>/student/group</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -38,7 +38,7 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("schedule");
             }
         } else {
-            response.getWriter().println("Account doesn/'/t exist");
+            response.getWriter().println("Account doesn't exist");
         }
     }
 

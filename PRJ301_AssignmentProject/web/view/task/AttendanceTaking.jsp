@@ -1,22 +1,35 @@
 <%-- 
-    Document   : AttendanceChecking
-    Created on : Mar 17, 2023, 11:58:42 PM
+    Document   : AttendanceTaking
+    Created on : Mar 17, 2023, 11:57:53 PM
     Author     : admin
 --%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Take Attendance</title>
+        <style>
+               a {
+                    text-decoration: none !important;
+               }
+               button,table {
+                    border: none;
+               }
+               button:focus {
+                    border: none;
+                    outline: none;
+               }
+          </style>
     </head>
-    <body> <div class="container" style="margin-left: 200px">
+    <body> <div class="container">
             <div class="row" style="display: flex">
                 <div class="col-md-8" style="margin-left: 200px">
                     <h1><span>FPT University Academic Portal</span></h1>
                 </div>
-                
+               
             </div>
             <div class="row" style="background-color: rgb(234, 234, 234); height: 40px; width: 1100px; margin-top: 30px; margin-left: 200px; display: flex">
                 <div class="col-md-6" style="text-align: left; display: flex">
@@ -30,8 +43,9 @@
                     </c:forEach>
                     |
                     <button style="background-color: rgb(67, 205, 128)">
-                        <a style="color: white" href="http://localhost:9999/PRJ_Assignment/logout">Logout</a>
+                        <a style="color: white" href="logout">Logout</a>
                     </button>
+                    
                 </div>
             </div>
             <form action="attendance" method="POST"> 
@@ -77,6 +91,7 @@
                 <input type="hidden" name="sessionid" value="${param.sesid}"/>
                 <input style="width:  60px; height: 40px; margin-left: 1250px; border: solid black 1px; " type="submit" value="Save"/>
             </form>
+            
         </div>
     </body>
 </html>

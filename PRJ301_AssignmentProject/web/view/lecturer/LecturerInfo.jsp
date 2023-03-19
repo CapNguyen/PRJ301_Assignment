@@ -3,16 +3,29 @@
     Created on : Mar 17, 2023, 11:51:41 PM
     Author     : admin
 --%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lecturer Info</title>
+        <style>
+               a {
+                    text-decoration: none !important;
+               }
+               button,table {
+                    border: none;
+               }
+               button:focus {
+                    border: none;
+                    outline: none;
+               }
+          </style>
     </head>
     <body>
-        <div class="container" style="margin-left: 200px">
+        <div class="container" >
             <div class="row" style="display: flex">
                 <div class="col-md-8" style="margin-left: 200px">
                     <h1><span>FPT University Academic Portal</span></h1>
@@ -48,7 +61,7 @@
                     </c:if>
                     |
                     <button style="background-color: rgb(67, 205, 128)">
-                        <a style="color: white" href="http://localhost:9999/PRJ_Assignment/logout">Logout</a>
+                        <a style="color: white" href="logout">Logout</a>
                     </button>
                 </div>
             </div>
