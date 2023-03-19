@@ -69,7 +69,7 @@
                                         <tbody>
                                              <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">
                                                   <tr>
-                                                       <td style="width: 450px"><b>Login</b></td>
+                                                       <td style="width: 550px; border-bottom: solid lightgray 1px"><b>Login</b></td>
                                                        <td style="width: 550px; border-bottom: solid lightgray 1px">${s.account.accountName}</td>
                                                   </tr>
                                                   <tr>

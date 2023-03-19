@@ -54,7 +54,7 @@
                          </c:forEach>
                     </div>
                </div>
-               <div style="margin-left: 200px" action="timetable" method="GET">
+               <div style="margin-left: 200px" >
                     <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
                          <h1>Activities for ${s.code} (${s.name})</h1>
                     </c:forEach>

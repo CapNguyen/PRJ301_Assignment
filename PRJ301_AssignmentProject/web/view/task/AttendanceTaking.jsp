@@ -35,23 +35,23 @@
                 <div class="col-md-6" style="text-align: left; display: flex">
                     <h3 style="margin-top: 8px; margin-left: 20px"><strong>View Schedule</strong></h3></a>
                 </div>
-                <div class="col-md-6" style="margin-left: 670px">
+                <div class="col-md-6" style="margin-left: 800px">
                     <c:forEach items="${requestScope.lec}" var="l" varStatus="loop">          
-                        <button style="background-color: rgb(67, 205, 128); color: white">
+                        <button style="background-color: #5cb85c; color: white">
                             <a style="color: white" href="lecturer/info?lecturer=${l.id}">${l.account.accountName}</a>
                         </button>
                     </c:forEach>
                     |
-                    <button style="background-color: rgb(67, 205, 128)">
+                    <button style="background-color: #5cb85c">
                         <a style="color: white" href="logout">Logout</a>
                     </button>
                     
                 </div>
             </div>
-            <form action="attendance" method="POST"> 
+            <form action="AT" method="POST"> 
                 <table style="margin-left: 200px; margin-top: 50px; border: 2px solid black">
                     <thead>
-                        <tr style="background-color: rgb(0, 179, 255);">
+                        <tr style="background-color: #6b90da;">
                             <th style="width: 80px; text-align: left;">INDEX</th>
                             <th style="width: 180px; text-align: left;">IMAGE</th>
                             <th style="width: 140px; text-align: left;">CODE</th>
