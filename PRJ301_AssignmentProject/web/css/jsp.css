@@ -1,0 +1,77 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+a{
+     text-decoration: none !important;
+}
+a:hover{
+     color:red;
+}
+button,table {
+     border: none;
+}
+button:focus {
+     border: none;
+     outline: none;
+}
+button>a{
+     color: white !important;
+}
+.row{
+     display: flex;
+     margin-left: 200px;
+}
+#row2{
+     background-color: rgb(234, 234, 234);
+     height: 40px;
+     width: 1100px;
+     margin-top: 30px;
+     display: flex;
+}
+button{
+     background-color: #5cb85c;
+     color: white;
+}
+h3{
+     margin-top: 8px;
+     margin-left: 20px;
+}
+.content{
+     margin-left: 200px;
+}
+table{
+     border: 2px solid black;
+}
+tr,th{
+     background-color: #6b90da;
+}
+.contentCell{
+     background-color: white;
+     width: 120px;
+}
+.tdHeading{
+     background-color: rgb(234, 234, 234);
+}
+report{
+     color: rgb(255, 102, 255);
+}
+.arefref{
+     margin-left: 20px;
+}
+.h3ref{
+     margin-top: 8px;
+}
+.infocell{
+     width: 450px;
+     border-bottom: solid lightgray 1px;
+     background-color: white !important;
+}
+.infotable{
+     border: none !important;
+}
+.submitButton{
+     display:flex;
+     justify-content: flex-end;
+     max-width: 85%;
+}

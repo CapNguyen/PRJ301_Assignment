@@ -11,73 +11,61 @@
      <head>
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
           <title>Session Info</title>
-          <style>
-               a {
-                    text-decoration: none !important;
-               }
-               button,table {
-                    border: none;
-               }
-               button:focus {
-                    border: none;
-                    outline: none;
-               }
-          </style>
+          <link href="${pageContext.request.contextPath}/css/jsp.css" rel="stylesheet" type="text/css"/>
      </head>
      <body>
           <div class="container" >
-               <div class="row" style="display: flex">
-                    <div class="col-md-8" style="margin-left: 200px">
+               <div class="row">
+                    <div class="col-md-8">
                          <h1><span>FPT University Academic Portal</span></h1>
                     </div>
-
                </div>
-               <div class="row" style="background-color: #f5f5f5; height: 40px; width: 1100px; margin-top: 30px; margin-left: 200px; display: flex">
+               <div class="row" id="row2">
                     <div class="col-md-6" style="text-align: left; display: flex">
                          <c:if test="${requestScope.stu ne null}">
-                              <a style="margin-left: 20px;" href="../timetable">
-                                   <h3 style="margin-top: 8px"><strong>Timetable</strong></h3>
+                              <a href="../timetable">
+                                   <h3 s><strong>Timetable</strong></h3>
                               </a>
-                              <h3 style="margin-top: 8px; margin-left: 20px"><strong>| User detail</strong></h3>               
+                              <h3 ><strong>| User detail</strong></h3>               
                          </div>
                          <div class="col-md-6" style="margin-left: 600px">
                               <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
-                                   <button style="background-color: #5cb85c; color: white">
-                                        <a style="color: white" href="">${s.account.accountName}</a>
+                                   <button>
+                                        <a href="">${s.account.accountName}</a>
                                    </button>
                               </c:forEach>
 
                               |
-                              <button style="background-color: #5cb85c">
-                                   <a style="color: white" href="/logout">Logout</a>
+                              <button>
+                                   <a href="logout">Logout</a>
                               </button>
                               |
                               <c:forEach items="${requestScope.camps}" var="cs" varStatus="loop">          
-                                   <button style="background-color: #5cb85c; color: white">
+                                   <button>
                                         ${cs.name}
                                    </button>
                               </c:forEach>
                          </c:if>
                          <c:if test="${requestScope.lect ne null}">
-                              <a style="margin-left: 20px;" href="../schedule">
-                                   <h3 style="margin-top: 8px"><strong>Schedule</strong></h3>
+                              <a href="../schedule">
+                                   <h3><strong>Schedule</strong></h3>
                               </a>
-                              <h3 style="margin-top: 8px; margin-left: 20px"><strong>| User detail</strong></h3>               
+                              <h3><strong>| User detail</strong></h3>               
                          </div>
                          <div class="col-md-6" style="margin-left: 600px">
                               <c:forEach items="${requestScope.lect}" var="l" varStatus="loop">          
-                                   <button style="background-color: #5cb85c; color: white">
-                                        <a style="color: white" href="">${l.account.accountName}</a>
+                                   <button>
+                                        <a href="">${l.account.accountName}</a>
                                    </button>
                               </c:forEach>
 
                               |
-                              <button style="background-color: #5cb85c">
-                                   <a style="color: white" href="/logout">Logout</a>
+                              <button >
+                                   <a href="logout">Logout</a>
                               </button>
                               |
                               <c:forEach items="${requestScope.camps}" var="cs" varStatus="loop">          
-                                   <button style="background-color: #5cb85c; color: white">
+                                   <button>
                                         ${cs.name}
                                    </button>
                               </c:forEach>
@@ -85,94 +73,88 @@
 
                     </div>
                </div>
-               <table style="margin-left: 200px;">
-                    <tbody>
-                         <tr>
-                              <td>
-                                   <div>
-                                        <h2>Activity detail</h2>
-                                        <br/>
-                                   </div>
-                                   <table>
-                                        <tbody>
-                                             <c:forEach items="${requestScope.sessions}" var="s" varStatus="loop">
-                                                  <tr>
-                                                       <td style="width: 550px; border-bottom: solid lightgray 1px"><b>Date:</b></td>
-                                                       <td style="width: 550px; border-bottom: solid lightgray 1px"><fmt:formatDate value="${s.date}" pattern="EEEE"/> - <fmt:formatDate value="${s.date}" type="date"/></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Slot:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px">${s.slot.id}</td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Student group:</b></td>                                    
-                                                       <td style=" border-bottom: solid lightgray 1px"><a style="color: blue" href="../student/group?class=${s.group.id}">${s.group.name}</a></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Instructor:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px"><a style="color: blue" href="../lecturer/info?lecturer=${s.lecturer.id}">${s.lecturer.code}</a></td>
+               <div class="content">
+                    <div>
+                         <h2>Activity detail</h2>
+                         <br/>
+                    </div>
+                    <table class="infotable">
+                         <tbody>
+                              <c:forEach items="${requestScope.sessions}" var="s" varStatus="loop">
+                                   <tr>
+                                        <td class="infocell"><b>Date:</b></td>
+                                        <td class="infocell"><fmt:formatDate value="${s.date}" pattern="EEEE"/> - <fmt:formatDate value="${s.date}" type="date"/></td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Slot:</b></td>
+                                        <td class="infocell">${s.slot.id}</td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Student group:</b></td>                                    
+                                        <td class="infocell"><a style="color: blue" href="../student/group?class=${s.group.id}">${s.group.name}</a></td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Instructor:</b></td>
+                                        <td class="infocell"><a style="color: blue" href="../lecturer/info?lecturer=${s.lecturer.id}">${s.lecturer.code}</a></td>
 
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Course:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px">${s.course.name}(${s.course.code})</td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Course session number:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Course session type:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Course session description:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px"></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <c:forEach items="${requestScope.camps}" var="cs" varStatus="loop">          
-                                                            <td style=" border-bottom: solid lightgray 1px"><b>Campus/Programme:</b></td>
-                                                            <td style=" border-bottom: solid lightgray 1px">${cs.name}</td>
-                                                       </c:forEach>
-                                                  </tr>
-                                                  <c:if test="${requestScope.stu ne null}">
-                                                       <tr>
-                                                            <td style=" border-bottom: solid lightgray 1px"><b>Attendance:</b></td>
-                                                            <c:if test="${s.status eq true}">
-                                                                 <c:if test="${s.attendance.status eq true}">
-                                                                      <td style=" border-bottom: solid lightgray 1px"><b>Attended</b></td>
-                                                                 </c:if>
-                                                                 <c:if test="${s.attendance.status eq false}">
-                                                                      <td style=" border-bottom: solid lightgray 1px"><b>Absent</b></td>
-                                                                 </c:if>
-                                                            </c:if>
-                                                            <c:if test="${s.status eq false}">
-                                                                 <td style=" border-bottom: solid lightgray 1px"><b>Not Yet</b></td>
-                                                            </c:if>
-                                                       </tr>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Course:</b></td>
+                                        <td class="infocell">${s.course.name}(${s.course.code})</td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Course session number:</b></td>
+                                        <td class="infocell"></td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Course session type:</b></td>
+                                        <td class="infocell"></td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Course session description:</b></td>
+                                        <td class="infocell"></td>
+                                   </tr>
+                                   <tr>
+                                        <c:forEach items="${requestScope.camps}" var="cs" varStatus="loop">          
+                                             <td class="infocell"><b>Campus/Programme:</b></td>
+                                             <td class="infocell">${cs.name}</td>
+                                        </c:forEach>
+                                   </tr>
+                                   <c:if test="${requestScope.stu ne null}">
+                                        <tr>
+                                             <td class="infocell"><b>Attendance:</b></td>
+                                             <c:if test="${s.status eq true}">
+                                                  <c:if test="${s.attendance.status eq true}">
+                                                       <td class="infocell"><b>Attended</b></td>
                                                   </c:if>
-                                                  <c:if test="${requestScope.lect ne null}">
-                                                       <tr>
-                                                            <td style=" border-bottom: solid lightgray 1px"><b>Attendance:</b></td>
-                                                            <c:if test="${s.status eq true}">
-                                                                 <td style=" border-bottom: solid lightgray 1px"><a href="${pageContext.request.contextPath}/AT?sesid=${s.id}">Update</a></td>
-                                                            </c:if>
-                                                            <c:if test="${s.status eq false}">
-                                                                 <td style=" border-bottom: solid lightgray 1px"><a href="${pageContext.request.contextPath}/AT?sesid=${ses.id}">Take attendance</a></td>
-                                                            </c:if>
-                                                       </tr>
+                                                  <c:if test="${s.attendance.status eq false}">
+                                                       <td class="infocell"><b>Absent</b></td>
                                                   </c:if>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Record time:</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px"></td>
-                                                  </tr>
-                                             </c:forEach>
-                                        </tbody>
-                                   </table>
-                              </td> 
-                         </tr>
-                    </tbody>
-               </table>
+                                             </c:if>
+                                             <c:if test="${s.status eq false}">
+                                                  <td class="infocell"><b>Not Yet</b></td>
+                                             </c:if>
+                                        </tr>
+                                   </c:if>
+                                   <c:if test="${requestScope.lect ne null}">
+                                        <tr>
+                                             <td class="infocell"><b>Attendance:</b></td>
+                                             <c:if test="${s.status eq true}">
+                                                  <td class="infocell"><a href="${pageContext.request.contextPath}/AT?sesid=${s.id}">Update</a></td>
+                                             </c:if>
+                                             <c:if test="${s.status eq false}">
+                                                  <td class="infocell"><a href="${pageContext.request.contextPath}/AT?sesid=${s.id}">Take attendance</a></td>
+                                             </c:if>
+                                        </tr>
+                                   </c:if>
+                                   <tr>
+                                        <td class="infocell"><b>Record time:</b></td>
+                                        <td class="infocell"></td>
+                                   </tr>
+                              </c:forEach>
+                         </tbody>
+                    </table>
+               </div>
           </div>
      </body>
 </html>

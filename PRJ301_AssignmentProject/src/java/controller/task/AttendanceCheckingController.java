@@ -20,7 +20,7 @@ import model.Student;
 import model.Account;
 import model.Campus;
 
-public class AttendanceChecking extends BaseRequiredAuthenticatedController {
+public class AttendanceCheckingController extends BaseRequiredAuthenticatedController {
 
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {

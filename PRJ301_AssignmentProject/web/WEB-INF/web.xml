@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>AttendanceCheckingController</servlet-name>
-        <servlet-class>controller.task.AttendanceChecking</servlet-class>
+        <servlet-class>controller.task.AttendanceCheckingController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GroupController</servlet-name>
@@ -39,6 +39,10 @@
     <servlet>
         <servlet-name>TimeTableController</servlet-name>
         <servlet-class>controller.task.TimeTableController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AttendanceReportController</servlet-name>
+        <servlet-class>controller.task.AttendanceReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>GroupController</servlet-name>
         <url-pattern>/student/group</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceReportController</servlet-name>
+        <url-pattern>/AR</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

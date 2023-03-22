@@ -11,36 +11,26 @@
      <head>
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
           <title>Lecturer Info</title>
-          <style>
-               a {
-                    text-decoration: none !important;
-               }
-               button,table {
-                    border: none;
-               }
-               button:focus {
-                    border: none;
-                    outline: none;
-               }
-          </style>
+          <link href="${pageContext.request.contextPath}/css/jsp.css" rel="stylesheet" type="text/css"/>
+
      </head>
      <body>
           <div class="container" >
-               <div class="row" style="display: flex">
-                    <div class="col-md-8" style="margin-left: 200px">
+               <div class="row">
+                    <div class="col-md-8">
                          <h1><span>FPT University Academic Portal</span></h1>
                     </div>
                </div>
-               <div class="row" style="background-color: #f5f5f5; height: 40px; width: 1100px; margin-top: 30px; margin-left: 200px; display: flex">
+               <div class="row" id="row2">
                     <div class="col-md-6" style="text-align: left; display: flex">
                          <c:if test="${requestScope.stu ne null}">
                               <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
-                                   <a style="margin-left: 20px;" href="../timetable"><h3 style="margin-top: 8px"><strong>Timetable</strong></h3></a>
+                                   <a class="aref"style="margin-left: 20px;" href="../timetable"><h3 class="h3ref"style="margin-top: 8px"><strong>Timetable</strong></h3></a>
                               </c:forEach>
                          </c:if>
                          <c:if test="${requestScope.lect ne null}">
                               <c:forEach items="${requestScope.lect}" var="l" varStatus="loop">          
-                                   <a style="margin-left: 20px;" href="../schedule"><h3 style="margin-top: 8px"><strong>Schedule</strong></h3>
+                                   <a class="aref" href="../schedule"><h3 class="h3ref"><strong>Schedule</strong></h3>
                                    </a>
                               </c:forEach>
                          </c:if>
@@ -49,58 +39,57 @@
                     <div class="col-md-6" style="margin-left: 600px">
                          <c:if test="${requestScope.stu ne null}">
                               <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
-                                   <button style="background-color: #5cb85c; color: white">
-                                        <a style="color: white" href="../student/info">${s.account.accountName}</a>
+                                   <button>
+                                        <a href="../student/info">${s.account.accountName}</a>
                                    </button>
                               </c:forEach>
                          </c:if>
                          <c:if test="${requestScope.lect ne null}">
                               <c:forEach items="${requestScope.lect}" var="l" varStatus="loop">          
-                                   <button style="background-color: #5cb85c; color: white">
-                                        <a style="color: white" href="../lecturer/info?lecturer=${l.id}">${l.account.accountName}</a>
+                                   <button>
+                                        <a href="../lecturer/info?lecturer=${l.id}">${l.account.accountName}</a>
                                    </button>
                               </c:forEach>
                          </c:if>
                          |
-                         <button style="background-color: #5cb85c">
-                              <a style="color: white" href="logout">Logout</a>
+                         <button>
+                              <a href="logout">Logout</a>
                          </button>
+                         |
+                         <c:forEach items="${requestScope.camps}" var="cs" varStatus="loop">          
+                              <button>
+                                   ${cs.name}
+                              </button>
+                         </c:forEach>
                     </div>
                </div>
-               <table style="margin-left: 200px">
-                    <tbody>
-                         <tr>
-                              <td>
-                                   <div>
-                                        <h2>Account detail</h2>
-                                   </div>
-                                   <table>
-                                        <tbody>
-                                             <c:forEach items="${requestScope.lec}" var="l" varStatus="loop">
-                                                  <tr>
-                                                       <td style="width: 450px"><b>Login</b></td>
-                                                       <td style="width: 550px; border-bottom: solid lightgray 1px">${l.account.accountName}</td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Full name</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px">${l.name}</td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Image</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px"><img style="height: 150px; width: 120px" src="${l.img}" alt="alt"/></td>
-                                                  </tr>
-                                                  <tr>
-                                                       <td style=" border-bottom: solid lightgray 1px"><b>Email</b></td>
-                                                       <td style=" border-bottom: solid lightgray 1px">${l.email}</td>
-                                                  </tr>
-                                             </c:forEach>
-                                        </tbody>
-                                   </table>
-                              </td> 
-                         </tr>
-                    </tbody>
-               </table>
-
+               <div class="content">
+                    <div>
+                         <h2>Account detail</h2>
+                    </div>
+                    <table class="infotable">
+                         <tbody>
+                              <c:forEach items="${requestScope.lec}" var="l" varStatus="loop">
+                                   <tr>
+                                        <td class="infocell"><b>Login</b></td>
+                                        <td class="infocell">${l.account.accountName}</td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Full name</b></td>
+                                        <td class="infocell">${l.name}</td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Image</b></td>
+                                        <td class="infocell"><img style="height: 150px; width: 120px" src="${pageContext.request.contextPath}/img/images.jpg" alt="alt"/></td>
+                                   </tr>
+                                   <tr>
+                                        <td class="infocell"><b>Email</b></td>
+                                        <td class="infocell">${l.email}</td>
+                                   </tr>
+                              </c:forEach>
+                         </tbody>
+                    </table>
+               </div>
           </div>
      </body>
 </html>

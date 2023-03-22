@@ -12,39 +12,29 @@
      <head>
           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
           <title>Timetable</title>
-          <style>
-               a {
-                    text-decoration: none !important;
-               }
-               button,table {
-                    border: none;
-               }
-               button:focus {
-                    border: none;
-                    outline: none;
-               }
-          </style>
+          <link href="${pageContext.request.contextPath}/css/jsp.css" rel="stylesheet" type="text/css"/>
+
      </head>
      <body>
           <div class="container" >
-               <div class="row" style="display: flex">
-                    <div class="col-md-8" style="margin-left: 200px">
+               <div class="row">
+                    <div class="col-md-8">
                          <h1><span>FPT University Academic Portal</span></h1>
                     </div>
                </div>
-               <div class="row" style="background-color: #f5f5f5; height: 40px; width: 1100px; margin-top: 30px; margin-left: 200px; display: flex">
+               <div class="row" id="row2">
                     <div class="col-md-6" style="text-align: left; display: flex">
-                         <h3 style="margin-top: 8px; margin-left: 20px"><strong>View Schedule</strong></h3>
+                         <h3><strong>View Schedule</strong></h3>
                     </div>
                     <div class="col-md-6" style="margin-left: 680px">
                          <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
-                              <button style="background-color: #5cb85c; color: white">
-                                   <a style="color: white" href="student/info">${s.account.accountName}</a>
+                              <button>
+                                   <a href="student/info">${s.account.accountName}</a>
                               </button>
                          </c:forEach>
                          |
-                         <button style="background-color: #5cb85c">
-                              <a style="color: white" href="logout">Logout</a>
+                         <button>
+                              <a href="logout">Logout</a>
                          </button>
                          |
                          <c:forEach items="${requestScope.camps}" var="cs" varStatus="loop">          
@@ -54,12 +44,12 @@
                          </c:forEach>
                     </div>
                </div>
-               <div style="margin-left: 200px" >
+               <div class="content" >
                     <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
                          <h1>Activities for ${s.code} (${s.name})</h1>
                     </c:forEach>
                </div>
-               <div style="margin-left: 200px">
+               <div class="content">
                     <p>
                          <b>Note</b>
                          : These activities do not include extra-curriculum activities, such as
@@ -83,13 +73,13 @@
                          </p>
                     </div>
                </div>
-               <div style="margin-left: 200px">
+               <div class="content">
                     <c:if test="${requestScope.dates ne null}">
                          <table style="border: 2px solid black;" border="1px"> 
                               <tr style="background-color: #6b90da">
                                    <td>
                                         <form action="timetable" method="GET">
-                                             <table style="border: solid 2px black">
+                                             <table style="border:none">
                                                   <thead>
                                                        <tr>
                                                             <th style="text-align: left">From: <input type="date" name="from"/><br/>
@@ -113,7 +103,7 @@
                                    <tr>
                                         <td style="background-color: rgb(234, 234, 234)">Slot ${slot.id}</td>
                                         <c:forEach items="${requestScope.dates}" var="d">
-                                             <td style="width: 120px">
+                                             <td class="infocell">
                                                   <c:forEach items="${requestScope.s.groups}" var="g">
                                                        <c:forEach items="${g.sessions}" var="ses" varStatus="loop">
                                                             <c:if test="${ses.date eq d and ses.slot.id eq slot.id}">
@@ -129,7 +119,7 @@
                                                                  </c:if>
                                                                  <c:forEach items="${requestScope.stu}" var="s" varStatus="loop">          
                                                                       <c:if test="${ses.status eq false}">
-                                                                           <b style="color: red">(Not yet)</b><br/>
+                                                                           <b>(Not yet)</b><br/>
                                                                       </c:if>
                                                                  </c:forEach>
                                                                  <button style="background-color: #5cb85c; color: white">

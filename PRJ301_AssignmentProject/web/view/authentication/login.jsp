@@ -23,7 +23,7 @@
                                    </div>
                                    <div class="form__field">
                                           <select name="campus" class="btn btn-default" required>
-                                                 <option selected="selected" value="">Select Campus</option>
+                                                 <option selected="selected" value="1">FU-HL(Default)</option>
                                                  <option value="1">FU-Hoà Lạc</option>
                                                  <option value="2">FU-Hồ Chí Minh</option>
                                                  <option value="3">FU-Đà Nẵng</option>
