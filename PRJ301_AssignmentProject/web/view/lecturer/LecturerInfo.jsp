@@ -46,9 +46,7 @@
                          </c:if>
                          <c:if test="${requestScope.lect ne null}">
                               <c:forEach items="${requestScope.lect}" var="l" varStatus="loop">          
-                                   <button>
                                         <a href="../lecturer/info?lecturer=${l.id}">${l.account.accountName}</a>
-                                   </button>
                               </c:forEach>
                          </c:if>
                          |
